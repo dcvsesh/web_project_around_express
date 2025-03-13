@@ -1,7 +1,13 @@
 const express = require('express');
-
 const router = express.Router();
-const fs = require('fs');
+const {getUsers, getUserId, createUser} = require("../controllers/Users")
+
+router.get('/', getUsers);
+router.get('/:userId', getUserId);
+router.post('/',createUser)
+
+module.exports = router;
+/*const fs = require('fs');
 const path = require('path');
 
 router.get('/', (req, res) => {
@@ -37,6 +43,4 @@ res.send(user)
 }
 );
 })
-
-module.exports = router;
-
+*/
