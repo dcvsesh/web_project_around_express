@@ -17,11 +17,10 @@ const getCards = async (req, res) => {
 };
 
 const createCard = async (req, res) => {
+  const { name, link} = req.body;
+  const owner = req.user._id;
+  const newCard = new Card({ name, link, owner});
   try {
-    const { name, link} = req.body;
-    const owner = req.user._id;
-    console.log(req.user._id);
-    const newCard = new Card({ name, link, owner});
     const saveCard = await newCard.save();
     return res.status(201).json(saveCard);
   } catch (error) {
