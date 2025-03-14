@@ -30,8 +30,9 @@ const createCard = async (req, res) => {
 
 
 const deleteCard = async (req, res) => {
+  const {cardId} = req.params;
   try {
-    const card = await Card.findByIdAndDelete(req.params.cardId).orFail(() => {
+    const card = await Card.findByIdAndDelete(cardId).orFail(() => {
       const error = new Error("No se ha encontrado ninguna tarjeta con esa id");
       error.statusCode = 404;
       throw error;
